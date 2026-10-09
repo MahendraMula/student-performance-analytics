@@ -12,7 +12,7 @@
 - **Project Title:** Student Performance Analytics System
 - **Course Name:** Python with AI
 - **Organization / Provider:** EWB Courses
-- **Student Name:** Mahendra Mula 
+- **Student Name:** Mula Venkata Surya Mahendra 
 - **Email:** maheshbanu58@gmail.com 
 - **Submission Date:** October 2026
 
@@ -164,4 +164,3 @@ The completed application successfully:
 - **Repository Name:** `student-performance-analytics`
 - **Owner:** `MahendraMula`
 - **Repository URL:** `https://github.com/MahendraMula/student-performance-analytics`
-- **Submission Status:** Ready for push to GitHub and URL submission via the EWB Courses Google Form.
