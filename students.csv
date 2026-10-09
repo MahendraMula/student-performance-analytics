@@ -1,0 +1,21 @@
+Student_ID,Name,Department,Math_Marks,Physics_Marks,Python_Marks,Attendance
+S101,Aarav Sharma,Computer Science,88,92,95,94
+S102,Diya Patel,Computer Science,76,81,84,88
+S103,Rohan Verma,Information Technology,42,38,55,72
+S104,Ananya Iyer,Data Science,95,98,99,98
+S105,Vikram Singh,Mechanical,65,70,68,80
+S106,Neha Gupta,Computer Science,58,62,60,85
+S107,Kavya Nair,Data Science,91,89,94,92
+S108,Aditya Joshi,Information Technology,34,40,48,65
+S109,Pooja Reddy,Computer Science,82,78,85,90
+S110,Rahul Mehta,Mechanical,45,50,52,70
+S111,Sneha Kulkarni,Data Science,89,94,91,95
+S112,Varun Rao,Information Technology,72,68,75,82
+S113,Ishaan Deshmukh,Computer Science,30,32,40,60
+S114,Priya Pillai,Data Science,96,93,98,96
+S115,Manish Das,Mechanical,55,58,62,78
+S116,Riya Chatterjee,Computer Science,79,84,88,89
+S117,Siddharth Jain,Information Technology,63,67,71,84
+S118,Tanvi Bhat,Data Science,90,92,96,93
+S119,Karan Chopra,Mechanical,38,36,44,68
+S120,Meera Menon,Computer Science,85,87,90,91
