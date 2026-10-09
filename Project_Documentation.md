@@ -12,8 +12,8 @@
 - **Project Title:** Student Performance Analytics System
 - **Course Name:** Python with AI
 - **Organization / Provider:** EWB Courses
-- **Student Name:** Mahendra Mula `[Student Name]`
-- **Email:** maheshbanu58@gmail.com `[Student Email]`
+- **Student Name:** Mahendra Mula 
+- **Email:** maheshbanu58@gmail.com 
 - **Submission Date:** October 2026
 
 ---
