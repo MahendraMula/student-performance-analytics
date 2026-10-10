@@ -113,7 +113,7 @@ To maintain academic rigor, passing requires meeting two conditions simultaneous
 1. **Overall Average**: The student's overall average must be at least **40.0%**.
 2. **Subject Minimum**: The student must score at least **35.0 marks** in every individual subject.
 
-*If a student has an overall average $\ge 40\%$ but scores $< 35$ in any single subject, their status is evaluated as **Fail**.*
+*If a student has an overall average 40% but scores < 35 in any single subject, their status is evaluated as **Fail**.*
 
 ---
 
