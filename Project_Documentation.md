@@ -12,8 +12,8 @@
 - **Project Title:** Student Performance Analytics System
 - **Course Name:** Python with AI
 - **Organization / Provider:** EWB Courses
-- **Student Name:** Mula Venkata Surya Mahendra 
-- **Email:** maheshbanu58@gmail.com 
+- **Student Name:** Mula Venkata Surya Mahendra
+- **Email:** maheshbanu58@gmail.com
 - **Submission Date:** October 2026
 
 ---
@@ -115,13 +115,9 @@ The implementation follows a modular architecture separating reusable logic ([`f
 ## 7. Output & Visual Results
 
 ### Terminal Output
-The script prints structured sections:
-1. Overall Student Performance Table
-2. Overall Class Performance Metrics
-3. Pass vs. Fail Breakdown
-4. Subject-Wise Analytics
-5. Top Performers (Honor Roll)
-6. Lowest Performers
+The script outputs a clean, unified presentation titled **Complete Student Performance Summary** containing:
+1. Complete student tabular records (Student ID, Name, Department, Subject Marks, Total, Average, Grade, Status, Attendance)
+2. Integrated cohort performance summary (Total records, Pass/Fail counts and percentages, Class Average, Median, Std Dev, Highest/Lowest marks, Subject averages, Best subject, and Top/Lowest performers)
 
 A high-resolution screenshot of the console execution is stored at:
 [`screenshots/terminal_output.png`](screenshots/terminal_output.png)

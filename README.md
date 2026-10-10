@@ -159,64 +159,39 @@ python main.py
 ## 10. Sample Output
 
 ```
-********************************************************************************
-                      STUDENT PERFORMANCE ANALYTICS SYSTEM                      
-                    EWB Courses | Python with AI Assignment                     
-********************************************************************************
+================================================================================
+                      Complete Student Performance Summary                      
+================================================================================
+Student_ID            Name             Department  Math_Marks  Physics_Marks  Python_Marks  Total_Marks  Average_Marks Grade Status  Attendance
+      S101    Aarav Sharma       Computer Science          88             92            95        275.0          91.67     A   Pass          94
+      S102      Diya Patel       Computer Science          76             81            84        241.0          80.33     B   Pass          88
+      S103     Rohan Verma Information Technology          42             38            55        135.0          45.00     F   Pass          72
+      S104     Ananya Iyer           Data Science          95             98            99        292.0          97.33     A   Pass          98
+      S105    Vikram Singh             Mechanical          65             70            68        203.0          67.67     D   Pass          80
+      S106      Neha Gupta       Computer Science          58             62            60        180.0          60.00     D   Pass          85
+      S107      Kavya Nair           Data Science          91             89            94        274.0          91.33     A   Pass          92
+      S108    Aditya Joshi Information Technology          34             40            48        122.0          40.67     F   Fail          65
+      S109     Pooja Reddy       Computer Science          82             78            85        245.0          81.67     B   Pass          90
+      S110     Rahul Mehta             Mechanical          45             50            52        147.0          49.00     F   Pass          70
+      S111  Sneha Kulkarni           Data Science          89             94            91        274.0          91.33     A   Pass          95
+      S112       Varun Rao Information Technology          72             68            75        215.0          71.67     C   Pass          82
+      S113 Ishaan Deshmukh       Computer Science          30             32            40        102.0          34.00     F   Fail          60
+      S114    Priya Pillai           Data Science          96             93            98        287.0          95.67     A   Pass          96
+      S115      Manish Das             Mechanical          55             58            62        175.0          58.33     E   Pass          78
+      S116 Riya Chatterjee       Computer Science          79             84            88        251.0          83.67     B   Pass          89
+      S117  Siddharth Jain Information Technology          63             67            71        201.0          67.00     D   Pass          84
+      S118      Tanvi Bhat           Data Science          90             92            96        278.0          92.67     A   Pass          93
+      S119    Karan Chopra             Mechanical          38             36            44        118.0          39.33     F   Fail          68
+      S120     Meera Menon       Computer Science          85             87            90        262.0          87.33     B   Pass          91
 
-[Step 1] Loading Dataset...
--> Successfully loaded 'students.csv'
--> Total records: 20 students
--> Columns detected: ['Student_ID', 'Name', 'Department', 'Math_Marks', 'Physics_Marks', 'Python_Marks', 'Attendance']
-
-[Step 2] Processing Student Metrics (NumPy calculations)...
--> Calculated Total Marks, Average Marks, Grades, and Pass/Fail statuses.
-
+--------------------------------------------------------------------------------
+Class Overview : 20 Students | Passed: 17 (85.0%) | Failed: 3
+Class Average  : 71.28% (Median: 76.00%, Std Dev: 20.51)
+Highest Score  : 97.33% (Total: 292) | Lowest Score: 34.00% (Total: 102)
+Subject Averages: Math: 68.65, Physics: 70.45, Python: 74.75 (Best Subject: Python)
+Top Performer(s): Ananya Iyer (97.33%), Priya Pillai (95.67%), Tanvi Bhat (92.67%)
+Lowest Performer: Ishaan Deshmukh (34.0%)
 ================================================================================
-                    1. COMPLETE STUDENT PERFORMANCE SUMMARY                     
-================================================================================
-Student_ID            Name             Department  Math_Marks  Physics_Marks  Python_Marks  Total_Marks  Average_Marks Grade Status
-      S101    Aarav Sharma       Computer Science          88             92            95        275.0          91.67     A   Pass
-      S102      Diya Patel       Computer Science          76             81            84        241.0          80.33     B   Pass
-      S103     Rohan Verma Information Technology          42             38            55        135.0          45.00     F   Pass
-      S104     Ananya Iyer           Data Science          95             98            99        292.0          97.33     A   Pass
-...
-
-================================================================================
-                      2. OVERALL CLASS PERFORMANCE METRICS                      
-================================================================================
-  * Total Students Evaluated : 20
-  * Class Average Marks      : 71.28
-  * Class Median Marks       : 76.00
-  * Standard Deviation       : 20.51
-  * Highest Average Mark     : 97.33
-  * Lowest Average Mark      : 34.00
-  * Highest Total Marks      : 292
-  * Lowest Total Marks       : 102
-
-================================================================================
-                            3. PASS VS FAIL ANALYSIS                            
-================================================================================
-  * Passed Students : 17 (85.0%)
-  * Failed Students : 3 (15.00%)
-
-================================================================================
-                           4. SUBJECT-WISE ANALYTICS                            
-================================================================================
-Subject  Average_Marks  Highest_Marks  Lowest_Marks  Std_Dev
-   Math          68.65             96            30    21.28
-Physics          70.45             98            32    21.25
- Python          74.75             99            40    19.29
-
-  -> Best Performing Subject: Python (Highest average score)
-
-================================================================================
-                    5. TOP-PERFORMING STUDENTS (HONOR ROLL)                     
-================================================================================
-Student_ID         Name   Department  Average_Marks  Total_Marks Grade
-      S104  Ananya Iyer Data Science          97.33        292.0     A
-      S114 Priya Pillai Data Science          95.67        287.0     A
-      S118   Tanvi Bhat Data Science          92.67        278.0     A
 ```
 
 ---
