@@ -229,4 +229,4 @@ Visual execution captures are maintained inside the [`screenshots/`](screenshots
 
 ## 14. GitHub Repository
 
-- **Repository URL**: `https://github.com/MahendraMula/student-performance-analytics` *(To be pushed upon remote repository creation)*
+- **Repository URL**: `https://github.com/MahendraMula/student-performance-analytics` 
