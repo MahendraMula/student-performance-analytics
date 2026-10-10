@@ -84,15 +84,19 @@ The implementation follows a modular architecture separating reusable logic ([`f
 ### C. Rule-Based Grading & Pass/Fail Evaluation
 - Implemented in `assign_grade()` and `evaluate_pass_fail()`.
 - Grades are evaluated through conditional statements:
-  - `A`: Average $\ge 90.0$
+  - `A`: Average $\ge 90.0$ ($90 - 100\%$)
   - `B`: $80.0 \le \text{Average} < 90.0$
   - `C`: $70.0 \le \text{Average} < 80.0$
   - `D`: $60.0 \le \text{Average} < 70.0$
-  - `E`: $50.0 \le \text{Average} < 60.0$
-  - `F`: $\text{Average} < 50.0$
+  - `E`: $40.0 \le \text{Average} < 60.0$
+  - `F`: $\text{Average} < 40.0$ (Failing performance)
 - Pass/Fail rule:
   - A student **passes** if and only if: $\text{Average} \ge 40.0$ **AND** $\min(\text{Subject Marks}) \ge 35.0$.
-  - Evaluated using explicit `for` loop iterations across subject scores.
+  - Otherwise, the student fails. Evaluated using explicit `for` loop iterations across subject scores.
+- Policy Alignment:
+  - Grade F is strictly aligned with failing performance ($\text{Average} < 40.0\%$). As a result, any student with Grade F automatically receives Status Fail, eliminating contradictions where a student receives Grade F but passes.
+  - Students with an average between $40.0\%$ and $59.99\%$ receive Grade E. If all their individual subject marks are $\ge 35$, they receive Status Pass (e.g., S103 at 45.00% and S110 at 49.00%).
+  - If a student achieves an overall average $\ge 40\%$ but scores $< 35$ in any subject (e.g., student S108 scoring 34 in Math with a 40.67% average), they receive Grade E and Status Fail.
 
 ### D. Cohort & Subject Analytics
 - Implemented in `calculate_class_statistics()` and `analyze_subject_performance()`.
@@ -106,8 +110,8 @@ The implementation follows a modular architecture separating reusable logic ([`f
 
 1. **Clean Separation of Concerns**: Logic is organized cleanly between reusable backend functions and presentation code.
 2. **True Numerical Optimization**: Uses native NumPy array buffers rather than slow Python standard loops for bulk calculations.
-3. **Comprehensive Edge-Case Handling**: Handled scenarios include ties in top ranks, subject-specific failure criteria, and missing input files.
-4. **Automated Unit Testing**: Includes 9 unit tests checking boundary conditions, missing files, and numerical accuracy.
+3. **Comprehensive Edge-Case Handling**: Handled scenarios include ties in top ranks, subject-specific failure criteria, aligned grading boundaries, and missing input files.
+4. **Automated Unit Testing**: Includes 11 automated unit tests checking all grade boundaries, pass/fail edge cases, missing files, and numerical accuracy.
 5. **Human-Readable Output Formatting**: Console reports use aligned headers, tabular format, and visual dividers.
 
 ---
@@ -132,7 +136,7 @@ A multi-panel performance chart illustrating Subject-Wise Average Performance an
 
 The completed application successfully:
 - Processes multi-subject student cohorts instantly.
-- Accurately classifies performance across 6 grade categories.
+- Accurately classifies performance across 6 aligned grade categories (`A` through `F`).
 - Correctly identifies that out of 20 students, **17 passed (85.0%)** and **3 failed (15.0%)**.
 - Discovers that **Python** had the highest class average (74.75 marks).
 - Highlights top achievers: S104 Ananya Iyer (97.33% average, Grade A), S114 Priya Pillai (95.67% average, Grade A), and S118 Tanvi Bhat (92.67% average, Grade A).
@@ -145,6 +149,7 @@ The completed application successfully:
 1. **Column Collision in Dynamic Filtering**: In an early iteration, `get_subject_columns` extracted all columns ending with `_Marks`. When `Total_Marks` was computed, subsequent calls incorrectly included totals in the subject average calculation. This was diagnosed and resolved by explicitly excluding computed aggregate columns.
 2. **Handling Academic Ties**: Using simple `.head(3)` or `.iloc[:3]` arbitrarily excludes students who scored identical top marks. A threshold-based filtering approach was implemented so that all students matching the top score cutoff are recognized.
 3. **Multi-Condition Pass Evaluation**: Distinguishing students who achieved an overall average above 40% but failed a single subject (such as Aditya Joshi scoring 34 in Math) required compound evaluation rather than naive thresholding on average marks.
+4. **Policy Alignment between Grades and Pass Status**: In the initial scheme, Grade F was defined as `< 50%` while pass required an average of `40%`, causing students in the 40–49% range (S103, S110) to receive Grade F while passing. The grading scale was updated to allocate Grade E for 40–59.99% and Grade F strictly for `< 40%`, ensuring Grade F unambiguously indicates failing performance and eliminating contradictory outcomes.
 
 ### Key Concepts Learned
 - Practical vectorization techniques using NumPy.

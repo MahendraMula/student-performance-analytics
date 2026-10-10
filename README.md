@@ -101,21 +101,29 @@ student-performance-analytics/
 ### Grading Scheme
 Grades are derived directly from a student's unrounded average marks across all subjects:
 
-- **Grade A**: $\text{Average} \ge 90.0$
-- **Grade B**: $80.0 \le \text{Average} < 90.0$
-- **Grade C**: $70.0 \le \text{Average} < 80.0$
-- **Grade D**: $60.0 \le \text{Average} < 70.0$
-- **Grade E**: $50.0 \le \text{Average} < 60.0$
-- **Grade F**: $\text{Average} < 50.0$
+- **Grade A**: $90.0 \le \text{Average} \le 100.0\%$
+- **Grade B**: $80.0 \le \text{Average} < 90.0\%$
+- **Grade C**: $70.0 \le \text{Average} < 80.0\%$
+- **Grade D**: $60.0 \le \text{Average} < 70.0\%$
+- **Grade E**: $40.0 \le \text{Average} < 60.0\%$
+- **Grade F**: $\text{Average} < 40.0\%$ (Failing performance)
 
 ### Pass/Fail Evaluation Criteria
 To maintain academic rigor, passing requires meeting two conditions simultaneously:
 1. **Overall Average**: The student's overall average must be at least **40.0%**.
 2. **Subject Minimum**: The student must score at least **35.0 marks** in every individual subject.
 
+
 *If a student has an overall average 40% but scores < 35 in any single subject, their status is evaluated as **Fail**.*
 
----
+Otherwise, the student fails.
+
+### Policy Alignment
+The grading scale is strictly aligned with the institutional pass/fail criteria:
+- **Grade F** specifically designates failing performance ($\text{Average} < 40.0\%$). Therefore, a student receiving Grade F will always receive Status **Fail**, eliminating contradictory cases where a student receives Grade F but passes.
+- Students achieving an average between **40.0% and 59.99%** receive **Grade E**. If all their individual subject marks are at least 35, they receive Status **Pass** (e.g., S103 at 45.00% and S110 at 49.00%).
+- If a student achieves an overall average $\ge 40\%$ but scores $< 35$ in any single subject (e.g., student S108 scoring 34 in Math with a 40.67% average), they receive Grade E but their status is evaluated as **Fail**.
+----
 
 ## 8. Setup & Installation
 
@@ -165,14 +173,14 @@ python main.py
 Student_ID            Name             Department  Math_Marks  Physics_Marks  Python_Marks  Total_Marks  Average_Marks Grade Status  Attendance
       S101    Aarav Sharma       Computer Science          88             92            95        275.0          91.67     A   Pass          94
       S102      Diya Patel       Computer Science          76             81            84        241.0          80.33     B   Pass          88
-      S103     Rohan Verma Information Technology          42             38            55        135.0          45.00     F   Pass          72
+      S103     Rohan Verma Information Technology          42             38            55        135.0          45.00     E   Pass          72
       S104     Ananya Iyer           Data Science          95             98            99        292.0          97.33     A   Pass          98
       S105    Vikram Singh             Mechanical          65             70            68        203.0          67.67     D   Pass          80
       S106      Neha Gupta       Computer Science          58             62            60        180.0          60.00     D   Pass          85
       S107      Kavya Nair           Data Science          91             89            94        274.0          91.33     A   Pass          92
-      S108    Aditya Joshi Information Technology          34             40            48        122.0          40.67     F   Fail          65
+      S108    Aditya Joshi Information Technology          34             40            48        122.0          40.67     E   Fail          65
       S109     Pooja Reddy       Computer Science          82             78            85        245.0          81.67     B   Pass          90
-      S110     Rahul Mehta             Mechanical          45             50            52        147.0          49.00     F   Pass          70
+      S110     Rahul Mehta             Mechanical          45             50            52        147.0          49.00     E   Pass          70
       S111  Sneha Kulkarni           Data Science          89             94            91        274.0          91.33     A   Pass          95
       S112       Varun Rao Information Technology          72             68            75        215.0          71.67     C   Pass          82
       S113 Ishaan Deshmukh       Computer Science          30             32            40        102.0          34.00     F   Fail          60
@@ -229,4 +237,7 @@ Visual execution captures are maintained inside the [`screenshots/`](screenshots
 
 ## 14. GitHub Repository
 
+
 - **Repository URL**: `https://github.com/MahendraMula/student-performance-analytics` 
+
+- **Repository URL**: `https://github.com/MahendraMula/student-performance-analytics`

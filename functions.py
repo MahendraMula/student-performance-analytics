@@ -63,12 +63,12 @@ def calculate_student_metrics(df: pd.DataFrame) -> pd.DataFrame:
 def assign_grade(average_mark: float) -> str:
     """
     Assign letter grade based on student average marks:
-    - A : average >= 90
+    - A : 90 <= average <= 100
     - B : 80 <= average < 90
     - C : 70 <= average < 80
     - D : 60 <= average < 70
-    - E : 50 <= average < 60
-    - F : average < 50
+    - E : 40 <= average < 60
+    - F : average < 40 (Failing performance)
     """
     if average_mark >= 90.0:
         return "A"
@@ -78,7 +78,7 @@ def assign_grade(average_mark: float) -> str:
         return "C"
     elif average_mark >= 60.0:
         return "D"
-    elif average_mark >= 50.0:
+    elif average_mark >= 40.0:
         return "E"
     else:
         return "F"
@@ -88,6 +88,7 @@ def evaluate_pass_fail(row: pd.Series, subject_cols: List[str]) -> str:
     """
     Determine Pass/Fail status for a student:
     Condition: Average marks >= 40 AND each individual subject mark >= 35.
+    A student passes only when both conditions are satisfied; otherwise fails.
     Demonstrates conditional statements.
     """
     if row["Average_Marks"] < 40.0:
