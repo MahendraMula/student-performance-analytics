@@ -208,3 +208,69 @@ def get_pass_fail_summary(df: pd.DataFrame) -> Dict[str, int]:
         "Failed": failed_count,
         "Pass_Percentage": pass_percentage
     }
+
+
+def generate_analytics_chart(
+    df: pd.DataFrame,
+    output_path: str = "screenshots/analytics_summary_chart.png"
+) -> str:
+    """
+    Generate and save a two-panel analytical summary chart (Subject-Wise Average
+    Performance and Grade Distribution A-F) from the processed student DataFrame.
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+
+    subject_df, _ = analyze_subject_performance(df)
+    grade_order = ["A", "B", "C", "D", "E", "F"]
+    grade_counts = [int((df["Grade"] == g).sum()) for g in grade_order]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6), dpi=150)
+
+    # Panel 1: Subject-Wise Average Performance
+    subj_colors = ["#3b82f6", "#10b981", "#f59e0b"]
+    bars1 = ax1.bar(
+        subject_df["Subject"],
+        subject_df["Average_Marks"],
+        color=subj_colors[:len(subject_df)],
+        width=0.6
+    )
+    ax1.set_title("Subject-Wise Average Performance", fontsize=14, fontweight="bold", pad=10)
+    ax1.set_ylabel("Average Marks", fontsize=12)
+    ax1.set_ylim(0, 100)
+    for bar, val in zip(bars1, subject_df["Average_Marks"]):
+        ax1.text(
+            bar.get_x() + bar.get_width() / 2.0,
+            bar.get_height() + 1.8,
+            f"{val:.2f}",
+            ha="center",
+            va="bottom",
+            fontsize=10,
+            fontweight="bold"
+        )
+
+    # Panel 2: Grade Distribution (A to F)
+    bars2 = ax2.bar(grade_order, grade_counts, color="#8b5cf6", width=0.6)
+    ax2.set_title("Grade Distribution (A to F)", fontsize=14, fontweight="bold", pad=10)
+    ax2.set_ylabel("Number of Students", fontsize=12)
+    max_count = max(grade_counts) if grade_counts else 1
+    ax2.set_ylim(0, max_count + 0.5)
+    ax2.set_yticks(range(0, max_count + 1))
+    for bar, count in zip(bars2, grade_counts):
+        ax2.text(
+            bar.get_x() + bar.get_width() / 2.0,
+            bar.get_height() + 0.12,
+            f"{count}",
+            ha="center",
+            va="bottom",
+            fontsize=10,
+            fontweight="bold"
+        )
+
+    plt.tight_layout(pad=2.0)
+    fig.savefig(output_path, dpi=150)
+    plt.close(fig)
+    return output_path

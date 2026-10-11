@@ -11,6 +11,8 @@ Verifies:
 7. Top/Lowest performer selection with tie handling.
 """
 
+import os
+import tempfile
 import unittest
 import numpy as np
 import pandas as pd
@@ -24,7 +26,8 @@ from functions import (
     get_top_performers,
     get_lowest_performers,
     analyze_subject_performance,
-    get_pass_fail_summary
+    get_pass_fail_summary,
+    generate_analytics_chart
 )
 
 
@@ -229,6 +232,16 @@ class TestStudentPerformanceAnalytics(unittest.TestCase):
         self.assertEqual(summary["Passed"] + summary["Failed"], 8)
         self.assertEqual(summary["Failed"], 2) # T6 and T7
         self.assertEqual(summary["Passed"], 6)
+
+    def test_generate_analytics_chart(self):
+        metrics_df = calculate_student_metrics(self.sample_data)
+        scored_df = apply_grading_and_status(metrics_df)
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            chart_path = os.path.join(tmp_dir, "test_chart.png")
+            saved_path = generate_analytics_chart(scored_df, chart_path)
+            self.assertEqual(saved_path, chart_path)
+            self.assertTrue(os.path.exists(chart_path))
+            self.assertGreater(os.path.getsize(chart_path), 1000)
 
 
 if __name__ == "__main__":

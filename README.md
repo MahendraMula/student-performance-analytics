@@ -98,32 +98,31 @@ student-performance-analytics/
 
 ## 7. Grading & Pass/Fail Rules
 
-### Grading Scheme
-Grades are derived directly from a student's unrounded average marks across all subjects:
+### Project Grading Scheme
+Grades are derived directly from a student's average marks across all subjects using **this project's defined grading policy** (designed to align with the project's pass threshold rather than representing a universal academic standard):
 
 - **Grade A**: $90.0 \le \text{Average} \le 100.0\%$
 - **Grade B**: $80.0 \le \text{Average} < 90.0\%$
 - **Grade C**: $70.0 \le \text{Average} < 80.0\%$
 - **Grade D**: $60.0 \le \text{Average} < 70.0\%$
 - **Grade E**: $40.0 \le \text{Average} < 60.0\%$
-- **Grade F**: $\text{Average} < 40.0\%$ (Failing performance)
+- **Grade F**: $\text{Average} < 40.0\%$ (Failing average)
 
 ### Pass/Fail Evaluation Criteria
-To maintain academic rigor, passing requires meeting two conditions simultaneously:
+Passing requires satisfying two conditions simultaneously:
 1. **Overall Average**: The student's overall average must be at least **40.0%**.
 2. **Subject Minimum**: The student must score at least **35.0 marks** in every individual subject.
 
-
-*If a student has an overall average 40% but scores < 35 in any single subject, their status is evaluated as **Fail**.*
-
-Otherwise, the student fails.
+A student fails if either condition is violated.
 
 ### Policy Alignment
-The grading scale is strictly aligned with the institutional pass/fail criteria:
-- **Grade F** specifically designates failing performance ($\text{Average} < 40.0\%$). Therefore, a student receiving Grade F will always receive Status **Fail**, eliminating contradictory cases where a student receives Grade F but passes.
-- Students achieving an average between **40.0% and 59.99%** receive **Grade E**. If all their individual subject marks are at least 35, they receive Status **Pass** (e.g., S103 at 45.00% and S110 at 49.00%).
-- If a student achieves an overall average $\ge 40\%$ but scores $< 35$ in any single subject (e.g., student S108 scoring 34 in Math with a 40.67% average), they receive Grade E but their status is evaluated as **Fail**.
-----
+The project's grading scale is aligned with its pass/fail evaluation criteria:
+- **Grade F Always Maps to Fail**: Because **Grade F** applies strictly when $\text{Average} < 40.0\%$ and passing requires $\text{Average} \ge 40.0\%$, every student assigned Grade F always receives Status **Fail** (e.g., S113 at 34.00% and S119 at 39.33%). No student with Grade F can ever receive Status Pass.
+- **Grade E Can Receive Pass or Fail Depending on Subject Marks**: Students with an overall average in the $40.0\%$ to $59.99\%$ range receive **Grade E**:
+  - If every individual subject mark is $\ge 35$, the student receives Status **Pass** (e.g., S103 with 45.00%, S110 with 49.00%, and S115 with 58.33%).
+  - If any individual subject mark is $< 35$, the student still receives **Grade E** based on their overall average ($\ge 40.0\%$), but their Status is evaluated as **Fail** due to the subject minimum rule (e.g., S108 with a 40.67% average but 34 marks in Math).
+
+---
 
 ## 8. Setup & Installation
 
@@ -143,6 +142,8 @@ The grading scale is strictly aligned with the institutional pass/fail criteria:
    python -m venv venv
    # On Windows (PowerShell):
    .\venv\Scripts\Activate.ps1
+   # On Windows (Command Prompt):
+   venv\Scripts\activate.bat
    # On Linux/macOS:
    source venv/bin/activate
    ```
@@ -164,9 +165,9 @@ python main.py
 
 ---
 
-## 10. Sample Output
+## 10. Verified Sample Output
 
-```
+```text
 ================================================================================
                       Complete Student Performance Summary                      
 ================================================================================
@@ -209,35 +210,40 @@ Lowest Performer: Ishaan Deshmukh (34.0%)
 Run the automated test suite with:
 
 ```bash
-python -m unittest test_analytics.py
+python -m unittest -v test_analytics.py
 ```
 
 **Verification Results:**
-- 9 test cases executed.
-- 100% pass rate covering data loading, NumPy math, boundary grading, tie-handling, and pass/fail logic.
+- **12 unit tests executed (`OK`, 100% pass rate)** covering:
+  - Dataset loading and missing-file error handling (`test_load_dataset`, `test_load_dataset_missing_file`).
+  - Vectorized student total and average calculations (`test_student_metrics_calculations`).
+  - Exact grade boundaries across `A`, `B`, `C`, `D`, `E`, and `F` (`test_grade_boundaries`).
+  - Pass/fail rules, subject-level failure, and synthetic policy scenarios (`test_pass_fail_rules`, `test_aligned_policy_student_scenarios`).
+  - Real `students.csv` grade and status verification for S103, S108, S110, and the Grade F invariant (`test_actual_dataset_grade_and_status_alignment`).
+  - Class statistics, subject-wise analytics, tie-aware top performer selection, pass/fail summary counts, and chart generation (`test_class_statistics`, `test_subject_analysis`, `test_top_performers_and_ties`, `test_pass_fail_summary_counts`, `test_generate_analytics_chart`).
 
 ---
 
-## 12. Screenshots
+## 12. Screenshots & Visual Results
 
-Visual execution captures are maintained inside the [`screenshots/`](screenshots/) directory:
+Verified execution visuals generated from the actual dataset and application are stored in [`screenshots/`](screenshots/):
 
-- **Terminal Output Screenshot**: `screenshots/terminal_output.png`
-- **Analytics Performance Chart**: `screenshots/analytics_summary_chart.png`
+- **Terminal Output Screenshot** ([`screenshots/terminal_output.png`](screenshots/terminal_output.png)): Displays the complete `Complete Student Performance Summary` table (20 students with aligned `Grade` and `Status` columns) and the cohort overview block produced by `python main.py`.
+- **Analytics Summary Chart** ([`screenshots/analytics_summary_chart.png`](screenshots/analytics_summary_chart.png)): Two-panel Matplotlib visualization produced by `generate_analytics_chart()` showing:
+  - *Subject-Wise Average Performance*: Math (`68.65`), Physics (`70.45`), and Python (`74.75`).
+  - *Grade Distribution (A to F)*: `A: 6`, `B: 4`, `C: 1`, `D: 3`, `E: 4`, `F: 2`.
 
 ---
 
 ## 13. Limitations & Assumptions
 
-1. **Fixed Evaluation Scale**: Subject marks are assumed to be out of a maximum of 100.
-2. **Even Weighting**: All subjects carry equal weight when computing total marks and average marks.
-3. **Synthetic Demonstration Data**: The dataset represents realistic synthetic academic records curated for educational demonstration.
+1. **Project-Specific Grading Policy**: The letter-grade thresholds (`E` for `40.0%` to `< 60.0%`, `F` for `< 40.0%`) and pass criteria ($\text{Average} \ge 40.0\%$ and each subject $\ge 35$) represent this project's defined evaluation rules rather than a universal institutional standard.
+2. **Fixed Evaluation Scale**: Subject marks are assumed to be out of a maximum of 100.
+3. **Equal Subject Weighting**: All subjects carry equal weight when computing total marks and average marks.
+4. **Synthetic Demonstration Data**: The dataset (`students.csv`) contains synthetic academic records curated for educational demonstration.
 
 ---
 
 ## 14. GitHub Repository
 
-
-- **Repository URL**: `https://github.com/MahendraMula/student-performance-analytics` 
-
-- **Repository URL**: `https://github.com/MahendraMula/student-performance-analytics`
+- **Repository URL**: [https://github.com/MahendraMula/student-performance-analytics](https://github.com/MahendraMula/student-performance-analytics)
